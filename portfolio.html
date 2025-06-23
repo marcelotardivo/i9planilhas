@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Projetos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .btn-details {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-section p, .modal-section ul {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .modal-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .modal-section li {
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-link {
+            background: #f8f9fa;
+            color: #495057;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+        }
+
+        .modal-link:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+            
+            .modal-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Meus Projetos</h1>
+        <p>Uma coleção dos meus trabalhos mais recentes</p>
+    </div>
+
+    <div class="container">
+        <div class="projects-grid">
+
+            <!-- Projeto 1 -->
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);">
+                    📊
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Planilha de gestão de compras, vendas e estoque</h3>
+                    <p class="project-description">Planilha que permite análise das compras e vendas durante o período, além de auxiliar nas decisões de negócio para uma gestão de estoque mais eficiente.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Indicadores comerciais</span>
+                        <span class="tech-tag">Gestão</span>
+                    </div>
+                    <button class="btn-details" onclick="openModal('project1')">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Projeto 2 -->
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
+                    🤖
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Automação em Python: Web Scrapping PPI</h3>
+                    <p class="project-description">O código acessa a página do governo e armazena as informações de cada um dos leilões disponíveis no site https://www.ppi.gov.br/projetos/.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Csv</span>
+                        <span class="tech-tag">Excel</span>
+                    </div>
+                    <button class="btn-details" onclick="openModal('project2')">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Projeto 3 -->
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
+                    🤖
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Automação em Python: Web Scrapping Vesselfinder</h3>
+                    <p class="project-description">O código acessa a página https://www.vesselfinder.com/vessels e armazena as informações de cada um dos navios solicitados em um arquivo .csv.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Csv</span>
+                        <span class="tech-tag">Excel</span>
+                    </div>
+                    <button class="btn-details" onclick="openModal('project3')">Ver Detalhes</button>
+                </div>
+            </div>
+
+    <!-- Modal Projeto 1 -->
+    <div id="project1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Planilha de gestão de compras, vendas e estoque</h2>
+                <p class="modal-subtitle">Planilha que permite análise das compras e vendas durante o período, além de auxiliar nas decisões de negócio para uma gestão de estoque mais eficiente.</p>
+                <span class="close" onclick="closeModal('project1')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p>Através de informações de compras e vendas informadas manualmente, ou obtidas através do leitor de notas fiscais, a planilha calcula indicadores comerciais e de gestão de estoque que auxiliam o gestor na tomada de decisão do seu negócio.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Funcionalidades</h3>
+                    <ul>
+                        <li>Indicadores de vendas: Ticket médio, faturamento, margem, sazonalidade, etc.</li>
+                        <li>Indicadores de compras: Ticket médio, despesas, fluxo de saída de caixa, etc.</li>
+                        <li>Indicadores de gestão de estoque: Sazonalidade, saída média mensal, entrada média mensal, giro de estoque, etc.</li>
+                        <li>Análise a nível categoria, produto e cliente.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Tecnologias Utilizadas</h3>
+                    <p>Office 365: Microsoft Office Excel (Totalmente executável de maneira online e gratuita através de contas no Office365)
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Links</h3>
+                    <div class="modal-links">
+                        <a href="#" class="modal-link">🔗 Ver Demo</a>
+                        <a href="#" class="modal-link">📂 Código Fonte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projeto 2 -->
+    <div id="project2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">App de Produtividade</h2>
+                <p class="modal-subtitle">Gerenciamento de Tarefas Mobile</p>
+                <span class="close" onclick="closeModal('project2')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p>Aplicativo móvel multiplataforma para gerenciamento de tarefas e produtividade. Inclui sincronização em nuvem, lembretes inteligentes e análise de produtividade pessoal.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Funcionalidades</h3>
+                    <ul>
+                        <li>Criação e organização de tarefas</li>
+                        <li>Sincronização automática entre dispositivos</li>
+                        <li>Lembretes e notificações push</li>
+                        <li>Relatórios de produtividade</li>
+                        <li>Modo offline</li>
+                        <li>Integração com calendário</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Tecnologias Utilizadas</h3>
+                    <p>Frontend: React Native, TypeScript<br>
+                    Backend: Firebase, Cloud Functions<br>
+                    Database: Firestore<br>
+                    Push Notifications: FCM</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Links</h3>
+                    <div class="modal-links">
+                        <a href="#" class="modal-link">📱 App Store</a>
+                        <a href="#" class="modal-link">🤖 Google Play</a>
+                        <a href="#" class="modal-link">📂 Código Fonte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function openModal(projectId) {
+            document.getElementById(projectId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(projectId) {
+            document.getElementById(projectId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animação de entrada dos cards
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(50px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
