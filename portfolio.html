@@ -353,6 +353,39 @@
                 </div>
             </div>
 
+
+            <!-- Projeto 4 -->
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
+                    📊
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Simulação de investimentos de Renda Fixa</h3>
+                    <p class="project-description">A planilha permite a simulação de aportes financeiros em ativos de renda fixa.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Office365</span>
+                    </div>
+                    <button class="btn-details" onclick="openModal('project4')">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <!-- Projeto 5 -->
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
+                    📊
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Simulação de financiamento imobiliário</h3>
+                    <p class="project-description">A planilha permite a simulação de financiamento imobiliário.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Office365</span>
+                    </div>
+                    <button class="btn-details" onclick="openModal('project5')">Ver Detalhes</button>
+                </div>
+            </div>
+
     <!-- Modal Projeto 1 -->
     <div id="project1" class="modal">
         <div class="modal-content">
@@ -385,8 +418,8 @@
                 <div class="modal-section">
                     <h3>Links</h3>
                     <div class="modal-links">
-                        <a href="#" class="modal-link">🔗 Ver Demo</a>
-                        <a href="#" class="modal-link">📂 Código Fonte</a>
+                        <a href="#" class="modal-link">🛒 Acessar loja</a>
+                        <a href="#" class="modal-link">▶️ Acessar videoaula</a>
                     </div>
                 </div>
             </div>
@@ -397,47 +430,162 @@
     <div id="project2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">App de Produtividade</h2>
-                <p class="modal-subtitle">Gerenciamento de Tarefas Mobile</p>
+                <h2 class="modal-title">Automação em Python: Web Scrapping PPI</h2>
+                <p class="modal-subtitle">Automação que permite que a formação de base de projetos presentes na plataforma PPI.
+                </p>
                 <span class="close" onclick="closeModal('project2')">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="modal-section">
                     <h3>Descrição</h3>
-                    <p>Aplicativo móvel multiplataforma para gerenciamento de tarefas e produtividade. Inclui sincronização em nuvem, lembretes inteligentes e análise de produtividade pessoal.</p>
+                    <p>O código acessa a página do governo e armazena as informações de cada um dos leilões disponíveis no site https://www.ppi.gov.br/projetos/.</p>
                 </div>
                 
                 <div class="modal-section">
                     <h3>Funcionalidades</h3>
                     <ul>
-                        <li>Criação e organização de tarefas</li>
-                        <li>Sincronização automática entre dispositivos</li>
-                        <li>Lembretes e notificações push</li>
-                        <li>Relatórios de produtividade</li>
-                        <li>Modo offline</li>
-                        <li>Integração com calendário</li>
+                        <li>Automação de tarefas.</li>
+                        <li>Criação de base de dados com detalhamento de projetos.</li>
+                        <li>Disparo de e-mail com base em anexo.</li>
+                        <li>Informe de atualizações da base.</li>
                     </ul>
                 </div>
                 
                 <div class="modal-section">
                     <h3>Tecnologias Utilizadas</h3>
-                    <p>Frontend: React Native, TypeScript<br>
-                    Backend: Firebase, Cloud Functions<br>
-                    Database: Firestore<br>
-                    Push Notifications: FCM</p>
+                    <p>Python: Selenium, Pandas, Numpy.<br>
                 </div>
                 
                 <div class="modal-section">
                     <h3>Links</h3>
                     <div class="modal-links">
-                        <a href="#" class="modal-link">📱 App Store</a>
-                        <a href="#" class="modal-link">🤖 Google Play</a>
-                        <a href="#" class="modal-link">📂 Código Fonte</a>
+                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/EjehCO5ItxxEof0Xo8K8nYgBi1bPUher0-6TXKCpTc5gfw?e=88F5cM" class="modal-link">⬇️ Download de automação</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal Projeto 3 -->
+    <div id="project3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Automação em Python: Web Scrapping Vesselfinder</h2>
+                <p class="modal-subtitle">Automação de coleta de informações de navios em atividade no mundo.
+                </p>
+                <span class="close" onclick="closeModal('project3')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p>O código acessa a página https://www.vesselfinder.com/vessels e armazena as informações de cada um dos navios solicitados em um arquivo .csv.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Funcionalidades</h3>
+                    <ul>
+                        <li>Automação de tarefas.</li>
+                        <li>Criação de base de dados com detalhamento de projetos.</li>
+                        <li>Disparo de e-mail com base em anexo.</li>
+                        <li>Informe de atualizações da base.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Tecnologias Utilizadas</h3>
+                    <p>Python: Selenium, Pandas, Numpy.<br>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Links</h3>
+                    <div class="modal-links">
+                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/Ev_XliRmKD5FowDAZ7H8hq8Bh9O8p7oitNNH7jcdWuk-gg?e=ciYELP" class="modal-link">⬇️ Download de automação</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal Projeto 4 -->
+    <div id="project4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Simulação de investimentos de Renda Fixa</h2>
+                <p class="modal-subtitle">A planilha permite a simulação de aportes financeiros em ativos de renda fixa.
+                </p>
+                <span class="close" onclick="closeModal('project3')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p>A planilha permite a comparação de cenários otimista e pessimista em relação ao cenário base, além de disponibilizar ao usuário o tempo necessário para alcance da meta.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Funcionalidades</h3>
+                    <ul>
+                        <li>Planilha</li>
+                        <li>Excel</li>
+                        <li>Matemática financeira</li>
+                        <li>Office365</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Tecnologias Utilizadas</h3>
+                    <p>Excel<br>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Links</h3>
+                    <div class="modal-links">
+                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/ErlT5dQK0-xAtYHaR-gi0JkBVFteb2zlyimM9LPCZ_sgkQ?e=LkVS6y" class="modal-link">⬇️ Download de planilha</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projeto 5 -->
+    <div id="project5" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Simulação de financiamento imobiliário</h2>
+                <p class="modal-subtitle">A planilha permite a simulação de financiamento imobiliário.
+                </p>
+                <span class="close" onclick="closeModal('project3')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Descrição</h3>
+                    <p>A planilha permite a análise de financiamento para aquisição de imóvel.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Funcionalidades</h3>
+                    <ul>
+                        <li>Planilha</li>
+                        <li>Excel</li>
+                        <li>Matemática financeira</li>
+                        <li>Office365</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Tecnologias Utilizadas</h3>
+                    <p>Excel<br>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Links</h3>
+                    <div class="modal-links">
+                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/ErlT5dQK0-xAtYHaR-gi0JkBVFteb2zlyimM9LPCZ_sgkQ?e=LkVS6y" class="modal-link">⬇️ Download de planilha</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <script>
