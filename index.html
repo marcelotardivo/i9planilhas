@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>i9 Planilhas - Soluções em Gestão de Dados</title>
+    <title>i9 Planilhas - Soluções em Dados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Paleta Neutra e Profissional */
+            --primary-color: #0f172a; /* Azul escuro quase preto */
+            --accent-color: #2563eb;  /* Azul royal discreto para botões/links */
+            --bg-light: #f8fafc;      /* Cinza muito claro para fundos alternados */
+            --bg-white: #ffffff;
+            --text-main: #334155;     /* Cinza escuro para texto (melhor que preto puro) */
+            --text-heading: #1e293b;  /* Cinza quase preto para títulos */
+            --border-color: #e2e8f0;  /* Bordas sutis */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,27 +28,46 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.7;
-            color: #2c3e50;
-            background: #ffffff;
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1100px; /* Largura contida para facilitar leitura */
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header */
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #475569;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Header Minimalista */
         header {
-            background: #ffffff;
-            padding: 24px 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #e8e8e8;
+            backdrop-filter: blur(8px);
         }
 
         nav {
@@ -42,424 +77,366 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: #6b7280;
-            text-decoration: none;
-            font-size: 15px;
+            color: var(--text-main);
             font-weight: 500;
-            transition: color 0.2s ease;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
-            color: #2c3e50;
+            color: var(--accent-color);
         }
 
-        /* Hero Section */
-        .hero {
-            background: #ffffff;
-            padding: 160px 0 120px;
-            margin-top: 73px;
-        }
-
-        .hero-content {
-            max-width: 720px;
-            margin: 0 auto;
+        /* Botões Refinados */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px; /* Bordas levemente arredondadas, não pílula */
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
             text-align: center;
         }
 
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-heading);
+            background-color: var(--bg-light);
+        }
+
+        /* Hero Section Limpa */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            background-color: var(--bg-white);
+        }
+
         .hero h1 {
-            font-size: 56px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            color: #1a202c;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero p {
-            font-size: 20px;
-            color: #6b7280;
-            margin-bottom: 40px;
-            line-height: 1.6;
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: #64748b;
         }
 
-        .cta-button {
-            background: #2c3e50;
-            color: white;
-            padding: 16px 40px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s ease;
-        }
-
-        .cta-button:hover {
-            background: #1a252f;
-            transform: translateY(-1px);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 120px 0;
-            background: #fafafa;
+        /* Seções Gerais */
+        section {
+            padding: 100px 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #1a202c;
-            letter-spacing: -1px;
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
-
+        
         .section-subtitle {
             text-align: center;
-            font-size: 18px;
-            color: #6b7280;
-            margin-bottom: 80px;
+            color: #64748b;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Grid */
+        .bg-light {
+            background-color: var(--bg-light);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .service-card {
             background: white;
-            padding: 48px 40px;
-            border-radius: 8px;
-            border: 1px solid #e8e8e8;
-            transition: all 0.2s ease;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
-            border-color: #d1d5db;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
         }
 
         .service-icon {
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-
-        .service-card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #1a202c;
-        }
-
-        .service-card p {
-            color: #6b7280;
-            margin-bottom: 24px;
-            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
         }
 
         .service-link {
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .service-link:hover {
-            gap: 12px;
+            text-decoration: underline;
         }
 
-        .service-link::after {
-            content: '→';
-            transition: transform 0.2s ease;
-        }
-
-        /* Values Section */
-        .values {
-            padding: 120px 0;
-            background: white;
-        }
-
+        /* Values Grid */
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 48px;
-            margin-top: 80px;
-        }
-
-        .value-item {
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            text-align: left;
         }
 
         .value-item h4 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #1a202c;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .value-item h4::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
-        .value-item p {
-            color: #6b7280;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 120px 0;
-            background: #fafafa;
-        }
-
+        /* About Section Minimal */
         .about-content {
-            max-width: 720px;
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .about h2 {
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 32px;
-            color: #1a202c;
-            letter-spacing: -1px;
-        }
-
-        .about p {
-            font-size: 18px;
-            color: #6b7280;
-            margin-bottom: 24px;
-            line-height: 1.7;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 120px 0;
-            background: white;
             text-align: center;
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .contact-link {
-            background: #2c3e50;
+        /* Contact Section */
+        .contact-box {
+            background: var(--primary-color);
             color: white;
-            padding: 16px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            padding: 4rem;
+            border-radius: 16px;
+            text-align: center;
         }
 
-        .contact-link:hover {
-            background: #1a252f;
-            transform: translateY(-1px);
+        .contact-box h2 {
+            color: white;
+            margin-bottom: 1.5rem;
         }
 
-        .contact-link.secondary {
+        .contact-box p {
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-white {
             background: white;
-            color: #2c3e50;
-            border: 1px solid #e8e8e8;
+            color: var(--primary-color);
         }
-
-        .contact-link.secondary:hover {
-            background: #fafafa;
-            border-color: #d1d5db;
+        
+        .btn-white:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            background: #fafafa;
-            border-top: 1px solid #e8e8e8;
-            padding: 48px 0;
+            background: var(--bg-white);
+            color: var(--text-main);
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
             text-align: center;
+            font-size: 0.9rem;
         }
 
-        footer p {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Animations Utility */
         .fade-in {
             opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .fade-in.visible {
             opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .center-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            width: 100%;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero {
-                padding: 120px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 40px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .section-title {
-                font-size: 32px;
-            }
-            
-            .services-grid,
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-link {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero { padding-top: 140px; }
+            .service-card { padding: 1.5rem; }
+            .contact-box { padding: 2rem; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <nav class="container">
-            <div class="logo">i9 Planilhas</div>
+            <div class="logo">
+                i9<span>Planilhas</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
                 <li><a href="#services">Soluções</a></li>
                 <li><a href="#values">Valores</a></li>
                 <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li><a href="#contact" class="btn btn-primary" style="padding: 8px 20px; color: white;">Contato</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Transforme Dados em Decisões</h1>
-                <p>Soluções práticas e acessíveis para pequenos empresários tomarem decisões baseadas em dados, reduzindo a complexidade da gestão e aumentando a competitividade.</p>
-                <a href="#services" class="cta-button">Conhecer Soluções</a>
+            <div class="hero-content fade-in">
+                <h1>Transforme dados em decisões inteligentes</h1>
+                <p>Gestão descomplicada para pequenos e médios negócios. Reduza a complexidade e aumente a competitividade com ferramentas acessíveis.</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="#services" class="btn btn-primary">Conhecer Soluções</a>
+                    <a href="portfolio.html" target="_blank" class="btn btn-outline">Ver Portfólio</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services" class="bg-light">
         <div class="container">
-            <h2 class="section-title">Nossas Soluções</h2>
-            <p class="section-subtitle">Ferramentas desenvolvidas para simplificar sua gestão</p>
+            <h2 class="section-title fade-in">Nossas Soluções</h2>
+            <p class="section-subtitle fade-in">Ferramentas desenhadas para eficiência operacional.</p>
+            
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">📊</div>
-                    <h3>Planilha de Gestão Comercial e Logística</h3>
-                    <p>Ferramenta desenvolvida em Excel para controle completo do seu negócio.</p>
-                    <a href="portfolio.html" target="_blank" class="service-link">Acessar Solução</a>
+                    <h3>Gestão Comercial e Logística</h3>
+                    <p>Ferramenta completa em Excel para controle 360º do seu negócio, do estoque ao financeiro.</p>
+                    <a href="portfolio.html" target="_blank" class="service-link">Acessar demo &rarr;</a>
                 </div>
-                <div class="service-card">
+                
+                <div class="service-card fade-in">
                     <div class="service-icon">📈</div>
-                    <h3>Planilhas Personalizadas</h3>
-                    <p>Desenvolvimento de soluções e planilhas específicas para seu negócio.</p>
-                    <a href="https://wa.me/5521998438266" target="_blank" class="service-link">Entre em contato</a>
+                    <h3>Planilhas Sob Medida</h3>
+                    <p>Desenvolvimento de arquitetura de dados e planilhas específicas para a realidade da sua operação.</p>
+                    <a href="https://wa.me/5521998438266" target="_blank" class="service-link">Solicitar orçamento &rarr;</a>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Soluções Personalizadas</h3>
-                    <p>Análise personalizada dos seus resultados com diagnósticos e recomendações específicas.</p>
-                    <a href="https://wa.me/5521998438266" target="_blank" class="service-link">Entre em contato</a>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">👨‍💻</div>
+                    <h3>Consultoria de Negócios</h3>
+                    <p>Diagnóstico empresarial e recomendações estratégicas baseadas na análise dos seus dados.</p>
+                    <a href="https://wa.me/5521998438266" target="_blank" class="service-link">Falar com consultor &rarr;</a>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 64px;">
-                <a href="https://1drv.ms/f/c/ab2ac73da2b75965/EpuBy1NRr0hMjPJ9td_xFoMB9IJmvoB0OgFedpfKusDO0g?e=LG6tOb" class="contact-link secondary" target="_blank">
-                    Portfólio e Soluções Gratuitas
+
+            <div class="center-btn-container fade-in">
+                <a href="https://1drv.ms/f/c/ab2ac73da2b75965/EpuBy1NRr0hMjPJ9td_xFoMB9IJmvoB0OgFedpfKusDO0g?e=LG6tOb" class="btn btn-outline" target="_blank">
+                    Acessar Portfólio Completo e Arquivos Gratuitos
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="values" class="values">
+    <section id="values">
         <div class="container">
-            <h2 class="section-title">Nossos Valores</h2>
-            <p class="section-subtitle">Princípios que guiam nosso trabalho</p>
+            <h2 class="section-title fade-in">Nossos Valores</h2>
+            <p class="section-subtitle fade-in">Princípios que guiam cada projeto que entregamos.</p>
+            
             <div class="values-grid">
-                <div class="value-item">
-                    <h4>Simples</h4>
-                    <p>Complexidade é o inimigo da execução. Sua energia deve ser usada para o desenvolvimento do seu negócio, não para aprendizado de jargões.</p>
+                <div class="value-item fade-in">
+                    <h4>Simplicidade</h4>
+                    <p>A complexidade é inimiga da execução. Focamos em interfaces limpas para que sua energia seja gasta no negócio, não aprendendo softwares difíceis.</p>
                 </div>
-                <div class="value-item">
-                    <h4>Rápido</h4>
-                    <p>As soluções podem ser aplicadas rapidamente em seu negócio.</p>
+                <div class="value-item fade-in">
+                    <h4>Agilidade</h4>
+                    <p>Soluções "Plug & Play". Nossas ferramentas são desenhadas para serem implementadas rapidamente, gerando valor imediato.</p>
                 </div>
-                <div class="value-item">
-                    <h4>Objetivo</h4>
-                    <p>Cada planilha é desenvolvida para a solução de problemas específicos para seu negócio.</p>
+                <div class="value-item fade-in">
+                    <h4>Objetividade</h4>
+                    <p>Sem excessos. Cada funcionalidade existe para resolver um problema real e específico do dia a dia do empreendedor.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="bg-light">
         <div class="container">
-            <div class="about-content">
-                <h2>Sobre a i9 Planilhas</h2>
-                <p>Somos especializados em transformar a complexidade das informações em soluções para pequenos e médios empreendedores.</p>
-                <p>Nossa missão é democratizar o acesso a ferramentas de gestão baseadas em dados, oferecendo soluções de baixo custo e alta efetividade.</p>
-                <p>Com foco na praticidade e didática, ajudamos você a tomar decisões mais assertivas para o crescimento do seu negócio.</p>
+            <div class="about-content fade-in">
+                <h2 class="section-title">Sobre a i9 Planilhas</h2>
+                <p>Nossa missão é democratizar a inteligência de negócios.</p>
+                <p>Acreditamos que a gestão baseada em dados não deve ser um privilégio de grandes corporações. Transformamos a complexidade técnica em ferramentas visuais, intuitivas e de baixo custo para que pequenos e médios empreendedores possam tomar decisões assertivas.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title">Entre em Contato</h2>
-            <p class="section-subtitle">Pronto para transformar seu negócio?</p>
-            <div class="contact-links">
-                <a href="https://wa.me/5521998438266" class="contact-link" target="_blank">
-                    📞 WhatsApp
+            <div class="contact-box fade-in">
+                <h2>Pronto para profissionalizar sua gestão?</h2>
+                <p>Entre em contato para uma conversa sem compromisso sobre as necessidades do seu negócio.</p>
+                <a href="https://wa.me/5521998438266" target="_blank" class="btn btn-white">
+                    Falar no WhatsApp
                 </a>
             </div>
         </div>
@@ -467,7 +444,7 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 i9 Planilhas. Todos os direitos reservados.</p>
+            <p>&copy; 2026 i9 Planilhas. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -486,7 +463,7 @@
             });
         });
 
-        // Scroll animations
+        // Intersection Observer para animações sutis de entrada
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
