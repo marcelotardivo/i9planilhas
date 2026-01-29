@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Projetos</title>
+    <title>Portfólio - i9 Planilhas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Paleta Neutra e Profissional */
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-main: #334155;
+            --text-heading: #1e293b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,631 +28,446 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .header {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 24px;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        .project-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.1);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image::before {
-            opacity: 1;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .project-description {
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .btn-details {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-details:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
-            position: relative;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-subtitle {
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-
-        .close {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
-        }
-
-        .close:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-section {
+        p {
             margin-bottom: 1.5rem;
+            color: #475569;
         }
 
-        .modal-section h3 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+        a {
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Header com botão de voltar */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--bg-light);
+            color: var(--accent-color);
+        }
+
+        .back-button::before {
+            content: '←';
             font-size: 1.2rem;
         }
 
-        .modal-section p, .modal-section ul {
-            color: #666;
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background-color: var(--bg-white);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #64748b;
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        /* Fundo alternado */
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        /* Grid de Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Card de Produto */
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
+        }
+
+        .product-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+
+        .product-card p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
-        .modal-section ul {
-            padding-left: 1.5rem;
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
         }
 
-        .modal-section li {
-            margin-bottom: 0.3rem;
-        }
-
-        .modal-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .modal-link {
-            background: #f8f9fa;
-            color: #495057;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid #e9ecef;
-        }
-
-        .modal-link:hover {
-            background: #667eea;
+        .btn-primary {
+            background-color: var(--primary-color);
             color: white;
-            border-color: #667eea;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
-        @keyframes slideIn {
-            from { 
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
         }
 
+        .btn-outline:hover {
+            border-color: var(--text-heading);
+            background-color: var(--bg-light);
+        }
+
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Grupo de botões */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .button-group .btn {
+            flex: 1;
+        }
+
+        /* Badge de preço ou tag */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .badge-premium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-free {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-white);
+            color: var(--text-main);
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .modal-content {
-                margin: 10% auto;
-                width: 95%;
-            }
-            
-            .modal-links {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding-top: 120px; }
+            .section-title { font-size: 1.75rem; }
+            .product-card { padding: 1.5rem; }
+            .button-group {
                 flex-direction: column;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Meus Projetos</h1>
-        <p>Uma coleção dos meus trabalhos mais recentes</p>
-    </div>
 
-    <div class="container">
-        <div class="projects-grid">
+    <header>
+        <nav class="container">
+            <a href="index.html" class="back-button">Voltar para Início</a>
+            <div class="logo">
+                i9<span>Planilhas</span>
+            </div>
+        </nav>
+    </header>
 
-            <!-- Projeto 1 -->
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);">
-                    📊
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Planilha de gestão de compras, vendas e estoque</h3>
-                    <p class="project-description">Planilha que permite análise das compras e vendas durante o período, além de auxiliar nas decisões de negócio para uma gestão de estoque mais eficiente.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Excel</span>
-                        <span class="tech-tag">Indicadores comerciais</span>
-                        <span class="tech-tag">Gestão</span>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in visible">
+                <h1>Portfólio de Planilhas</h1>
+                <p>Soluções práticas e eficientes para gestão do seu negócio. Escolha entre nossas planilhas premium ou comece com nossas ferramentas gratuitas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS PAGOS -->
+    <section id="premium">
+        <div class="container">
+            <h2 class="section-title fade-in visible">Planilhas Premium</h2>
+            <p class="section-subtitle fade-in visible">Ferramentas completas desenvolvidas para profissionalizar sua gestão</p>
+            
+            <div class="products-grid">
+                <!-- Produto 1 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-premium">Premium</span>
+                    <div class="product-icon">📦</div>
+                    <h3>Planilha de Revendedores e Comerciantes</h3>
+                    <p>Controle completo de estoque, vendas, comissões e fluxo de caixa. Ideal para quem revende produtos ou possui comércio varejista.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-outline">Saiba Mais</a>
+                        <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
-                    <button class="btn-details" onclick="openModal('project1')">Ver Detalhes</button>
                 </div>
-            </div>
 
-            <!-- Projeto 2 -->
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
-                    🤖
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Automação em Python: Web Scrapping PPI</h3>
-                    <p class="project-description">O código acessa a página do governo e armazena as informações de cada um dos leilões disponíveis no site https://www.ppi.gov.br/projetos/.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Csv</span>
-                        <span class="tech-tag">Excel</span>
+                <!-- Produto 2 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-premium">Premium</span>
+                    <div class="product-icon">✂️</div>
+                    <h3>Planilha do Artesão</h3>
+                    <p>Gerencie projetos artesanais, calcule custos de materiais, precifique seus produtos e controle encomendas de forma simples e visual.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-outline">Saiba Mais</a>
+                        <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
-                    <button class="btn-details" onclick="openModal('project2')">Ver Detalhes</button>
                 </div>
-            </div>
 
-            <!-- Projeto 3 -->
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
-                    🤖
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Automação em Python: Web Scrapping Vesselfinder</h3>
-                    <p class="project-description">O código acessa a página https://www.vesselfinder.com/vessels e armazena as informações de cada um dos navios solicitados em um arquivo .csv.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Csv</span>
-                        <span class="tech-tag">Excel</span>
+                <!-- Produto 3 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-premium">Premium</span>
+                    <div class="product-icon">🔧</div>
+                    <h3>Planilha do Prestador de Serviços</h3>
+                    <p>Gestão de agendamentos, controle de serviços prestados, gestão financeira e acompanhamento de clientes para prestadores autônomos.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-outline">Saiba Mais</a>
+                        <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
-                    <button class="btn-details" onclick="openModal('project3')">Ver Detalhes</button>
                 </div>
-            </div>
 
-
-            <!-- Projeto 4 -->
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
-                    📊
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Simulação de investimentos de Renda Fixa</h3>
-                    <p class="project-description">A planilha permite a simulação de aportes financeiros em ativos de renda fixa.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Excel</span>
-                        <span class="tech-tag">Office365</span>
-                    </div>
-                    <button class="btn-details" onclick="openModal('project4')">Ver Detalhes</button>
-                </div>
-            </div>
-
-            <!-- Projeto 5 -->
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
-                    📊
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Simulação de financiamento imobiliário</h3>
-                    <p class="project-description">A planilha permite a simulação de financiamento imobiliário.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Excel</span>
-                        <span class="tech-tag">Office365</span>
-                    </div>
-                    <button class="btn-details" onclick="openModal('project5')">Ver Detalhes</button>
-                </div>
-            </div>
-
-    <!-- Modal Projeto 1 -->
-    <div id="project1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Planilha de gestão de compras, vendas e estoque</h2>
-                <p class="modal-subtitle">Planilha que permite análise das compras e vendas durante o período, além de auxiliar nas decisões de negócio para uma gestão de estoque mais eficiente.</p>
-                <span class="close" onclick="closeModal('project1')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Descrição</h3>
-                    <p>Através de informações de compras e vendas informadas manualmente, ou obtidas através do leitor de notas fiscais, a planilha calcula indicadores comerciais e de gestão de estoque que auxiliam o gestor na tomada de decisão do seu negócio.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Funcionalidades</h3>
-                    <ul>
-                        <li>Indicadores de vendas: Ticket médio, faturamento, margem, sazonalidade, etc.</li>
-                        <li>Indicadores de compras: Ticket médio, despesas, fluxo de saída de caixa, etc.</li>
-                        <li>Indicadores de gestão de estoque: Sazonalidade, saída média mensal, entrada média mensal, giro de estoque, etc.</li>
-                        <li>Análise a nível categoria, produto e cliente.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Tecnologias Utilizadas</h3>
-                    <p>Office 365: Microsoft Office Excel (Totalmente executável de maneira online e gratuita através de contas no Office365)
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Links</h3>
-                    <div class="modal-links">
-                        <a href="#" class="modal-link">🛒 Acessar loja</a>
-                        <a href="#" class="modal-link">▶️ Acessar videoaula</a>
+                <!-- Produto 4 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-premium">Premium</span>
+                    <div class="product-icon">💼</div>
+                    <h3>Planilha do Prestador que Vende</h3>
+                    <p>Solução híbrida para quem presta serviços e também vende produtos. Gestão integrada de estoque, serviços e financeiro em uma única ferramenta.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-outline">Saiba Mais</a>
+                        <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal Projeto 2 -->
-    <div id="project2" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Automação em Python: Web Scrapping PPI</h2>
-                <p class="modal-subtitle">Automação que permite que a formação de base de projetos presentes na plataforma PPI.
-                </p>
-                <span class="close" onclick="closeModal('project2')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Descrição</h3>
-                    <p>O código acessa a página do governo e armazena as informações de cada um dos leilões disponíveis no site https://www.ppi.gov.br/projetos/.</p>
+    <!-- PRODUTOS GRATUITOS -->
+    <section id="free" class="bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in visible">Planilhas Gratuitas</h2>
+            <p class="section-subtitle fade-in visible">Comece agora mesmo a organizar sua vida pessoal e profissional</p>
+            
+            <div class="products-grid">
+                <!-- Produto Gratuito 1 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-free">Gratuito</span>
+                    <div class="product-icon">💰</div>
+                    <h3>Planejamento Financeiro</h3>
+                    <p>Organize suas finanças pessoais com controle de receitas, despesas, metas de economia e acompanhamento mensal do seu orçamento.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-success">Download Grátis</a>
+                    </div>
                 </div>
-                
-                <div class="modal-section">
-                    <h3>Funcionalidades</h3>
-                    <ul>
-                        <li>Automação de tarefas.</li>
-                        <li>Criação de base de dados com detalhamento de projetos.</li>
-                        <li>Disparo de e-mail com base em anexo.</li>
-                        <li>Informe de atualizações da base.</li>
-                    </ul>
+
+                <!-- Produto Gratuito 2 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-free">Gratuito</span>
+                    <div class="product-icon">📋</div>
+                    <h3>Planilha de Processos Seletivos</h3>
+                    <p>Organize suas candidaturas, acompanhe etapas de processos seletivos e mantenha o controle de todas as oportunidades profissionais.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-success">Download Grátis</a>
+                    </div>
                 </div>
-                
-                <div class="modal-section">
-                    <h3>Tecnologias Utilizadas</h3>
-                    <p>Python: Selenium, Pandas, Numpy.<br>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Links</h3>
-                    <div class="modal-links">
-                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/EhxsdurluFJAhzzKasHpQmYByiScpGhyChpJS_qjwyqFkA?e=zPUGt6" class="modal-link">⬇️ Download de automação</a>
+
+                <!-- Produto Gratuito 3 -->
+                <div class="product-card fade-in visible">
+                    <span class="badge badge-free">Gratuito</span>
+                    <div class="product-icon">📚</div>
+                    <h3>Planilha do Concurseiro</h3>
+                    <p>Planeje seus estudos para concursos públicos com controle de disciplinas, cronograma de estudos e acompanhamento de desempenho.</p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-success">Download Grátis</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal Projeto 3 -->
-    <div id="project3" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Automação em Python: Web Scrapping Vesselfinder</h2>
-                <p class="modal-subtitle">Automação de coleta de informações de navios em atividade no mundo.
-                </p>
-                <span class="close" onclick="closeModal('project3')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Descrição</h3>
-                    <p>O código acessa a página https://www.vesselfinder.com/vessels e armazena as informações de cada um dos navios solicitados em um arquivo .csv.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Funcionalidades</h3>
-                    <ul>
-                        <li>Automação de tarefas.</li>
-                        <li>Criação de base de dados com detalhamento de projetos.</li>
-                        <li>Disparo de e-mail com base em anexo.</li>
-                        <li>Informe de atualizações da base.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Tecnologias Utilizadas</h3>
-                    <p>Python: Selenium, Pandas, Numpy.<br>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Links</h3>
-                    <div class="modal-links">
-                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/EhxsdurluFJAhzzKasHpQmYByiScpGhyChpJS_qjwyqFkA?e=zPUGt6" class="modal-link">⬇️ Download de automação</a>
-                    </div>
-                </div>
-            </div>
+    <footer>
+        <div class="container">
+            <p>© 2026 i9 Planilhas. Todos os direitos reservados.</p>
         </div>
-    </div>
-
-<!-- Modal Projeto 4 -->
-    <div id="project4" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Simulação de investimentos de Renda Fixa</h2>
-                <p class="modal-subtitle">A planilha permite a simulação de aportes financeiros em ativos de renda fixa.
-                </p>
-                <span class="close" onclick="closeModal('project3')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Descrição</h3>
-                    <p>A planilha permite a comparação de cenários otimista e pessimista em relação ao cenário base, além de disponibilizar ao usuário o tempo necessário para alcance da meta.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Funcionalidades</h3>
-                    <ul>
-                        <li>Planilha</li>
-                        <li>Excel</li>
-                        <li>Matemática financeira</li>
-                        <li>Office365</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Tecnologias Utilizadas</h3>
-                    <p>Excel<br>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Links</h3>
-                    <div class="modal-links">
-                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/ErlT5dQK0-xAtYHaR-gi0JkBVFteb2zlyimM9LPCZ_sgkQ?e=LkVS6y" class="modal-link">⬇️ Download de planilha</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Projeto 5 -->
-    <div id="project5" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Simulação de financiamento imobiliário</h2>
-                <p class="modal-subtitle">A planilha permite a simulação de financiamento imobiliário.
-                </p>
-                <span class="close" onclick="closeModal('project3')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Descrição</h3>
-                    <p>A planilha permite a análise de financiamento para aquisição de imóvel.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Funcionalidades</h3>
-                    <ul>
-                        <li>Planilha</li>
-                        <li>Excel</li>
-                        <li>Matemática financeira</li>
-                        <li>Office365</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Tecnologias Utilizadas</h3>
-                    <p>Excel<br>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Links</h3>
-                    <div class="modal-links">
-                        <a href="https://1drv.ms/f/c/ab2ac73da2b75965/ErlT5dQK0-xAtYHaR-gi0JkBVFteb2zlyimM9LPCZ_sgkQ?e=LkVS6y" class="modal-link">⬇️ Download de planilha</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    </footer>
 
     <script>
-        function openModal(projectId) {
-            document.getElementById(projectId).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+        // Intersection Observer para animações de entrada
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        function closeModal(projectId) {
-            document.getElementById(projectId).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Fechar modal ao clicar fora dele
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        }
+        }, observerOptions);
 
-        // Fechar modal com ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Animação de entrada dos cards
-        window.addEventListener('load', function() {
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(50px)';
-                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 200);
-            });
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
     </script>
+
 </body>
 </html>
